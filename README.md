@@ -13,3 +13,6 @@ OpenCV provides all these in a single function, cv.calcOpticalFlowPyrLK(). Here,
 In short, main.py script takes two consecutive frames and finds the corners on the first one with cv2.goodFeaturesToTrack function. After that, we compute the Optical Flow with the Lucas-Kanade algorithm using the information about the corner location. This is a cycled process which does the same for each pair of consecutive images.
 
 (This code doesn't check how correct are the next keypoints. So even if any feature point disappears in image, there is a chance that optical flow finds the next point which may look close to it. So actually for a robust tracking, corner points should be detected in particular intervals. OpenCV samples comes up with such a sample which finds the feature points at every 5 frames. It also run a backward-check of the optical flow points got to select only good ones. Check samples/python/lk_track.py).
+ 
+ # REQUIREMENTS:
+ - Install opencv: https://www.pyimagesearch.com/2018/05/28/ubuntu-18-04-how-to-install-opencv/
