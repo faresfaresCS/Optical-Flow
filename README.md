@@ -10,5 +10,8 @@ Optical Flow can be used in many areas where the object’s motion information i
 # Lucas-Kanade implementation with OpenCV
 OpenCV has the implementation of Pyramid Lucas & Kanade with Shi-Tomasi algorithm improvement (https://docs.opencv.org/2.4/modules/video/doc/motion_analysis_and_object_tracking.html#calcopticalflowpyrlk) to calculate the Optical Flow. Let’s take a look at the OpenCV algorithm based on official documentation.
 
-At first, we need to read our video and get the Shi-Tomasi algorithm’s features from the first frame. Also, some preprocessing things for algorithms and visualization are required here.
+In short, main.py script takes two consecutive frames and finds the corners on the first one with cv2.goodFeaturesToTrack function. After that, we compute the Optical Flow with the Lucas-Kanade algorithm using the information about the corner location. This is a cycled process which does the same for each pair of consecutive images.
+
+To run the Lucas-Kanade demo you can use the following command:
+python3 main.py --algorithm lucaskanade --video_path videos/PATH_TO_VIDEO/*.mp4
 
