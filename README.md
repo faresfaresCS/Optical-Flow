@@ -8,10 +8,8 @@ Optical flow is a task of per-pixel motion estimation between two consecutive fr
 Optical Flow can be used in many areas where the object’s motion information is crucial. Optical Flow is commonly found in video editors for compression, stabilization, slow-motion, etc. Also, Optical Flow finds its application in Action Recognition tasks and real-time tracking systems.
 
 # Lucas-Kanade implementation with OpenCV
-OpenCV has the implementation of Pyramid Lucas & Kanade with Shi-Tomasi algorithm improvement (https://docs.opencv.org/2.4/modules/video/doc/motion_analysis_and_object_tracking.html#calcopticalflowpyrlk) to calculate the Optical Flow. Let’s take a look at the OpenCV algorithm based on official documentation.
+OpenCV provides all these in a single function, cv.calcOpticalFlowPyrLK(). Here, we create a simple application which tracks some points in a video. To decide the points, we use cv.goodFeaturesToTrack(). We take the first frame, detect some Shi-Tomasi corner points in it, then we iteratively track those points using Lucas-Kanade optical flow. For the function cv.calcOpticalFlowPyrLK() we pass the previous frame, previous points and next frame. It returns next points along with some status numbers which has a value of 1 if next point is found, else zero. We iteratively pass these next points as previous points in next step. See the code main.py
 
 In short, main.py script takes two consecutive frames and finds the corners on the first one with cv2.goodFeaturesToTrack function. After that, we compute the Optical Flow with the Lucas-Kanade algorithm using the information about the corner location. This is a cycled process which does the same for each pair of consecutive images.
 
-To run the Lucas-Kanade demo you can use the following command:
-python3 main.py --algorithm lucaskanade --video_path videos/PATH_TO_VIDEO/*.mp4
 
